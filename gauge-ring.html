@@ -1,0 +1,185 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=gauge-ring&random=k5i6o8m4fc&version=5.3.3&code=MYewdgzgLgBA5gQwK5wKYBEFQTAvDAbQCgYYBvE0mANwQBslUAuGATgFYAaS0sBAW2YwA5IG5bQFTOw7lRhQAllDpCKM0iABm6iKigBhVGCioATiwLCADAFIpIgLQB2a8IC6PGAF9pVACY6EcnQsKqq0DKgAgmBy_Fhy4CxQxozeMhpaOvqGJmaWNpz2AGzObjIelF6UIaRhjCwAjBYWqTB8gixigNpOUu7yisruapraegZGpoR5tsJ2ACzsNqVUlTJ-2IHBgzT0jFExcQmyyagtQxmj2RPmzgUzAMwLru7lpCvk7rVCd3ctbUJigEI8noyPpKTaqGDpEZZca5G72ABMJWeLTWASC7whnz2sXkhySKS2UMyYxyk3hM0ai2eFW81W24QaTV-An-gGabQA5OYB9jMAgyrAqiggYQ4kXWHk_IiR5LV6o_wbTGhHaRaK4-JgRLHU6Q4Yky5wiXCepSmkyqofJUsDgs9oiQA0oYAd4P5pEF4NUIphZOuBruyLKsvWGPpNSVOIO6qOhOFOtFnqmt1mvuWtLNMk-LCc1v-gCN0wCRPk7ZAowQq0tGPVc45LjX73Gj5UGGbsVWGNZG3aXSeWKYUq0nXkQXABuIggAAOeLAeAV2mMclQEDM7nrUAAniP_ogUKh86RoAhjFAonAi6xmlsDD5D0W7AiM1sRyA5Hri6oIAALEAAdxY6no2i2bxkEdjBAOBjDnednxkN9PxbE4tjUagTDoBAR2_X84IhUhgKQMAfF0FDYK1UhgDoORUJgH86G0IiYAUVB-AAZRXIt6xkAAjEBjD8YwAHU5B8KBXwaGjSA4riTF0EA6E4joAGJZkKBSFOEeDPH_LUEAADzkCAABlHyFTDSLAVAmOXFjVNID9-MElgE1Ul5VAAqgIBHUioH0kzXQhaCvwjDDMJ8HTsDAYAhFPTCYCUMA4FsmBGnUrYtJ0gAVORgAAa28l93z8yi_whZzSGSvSEDY1BA1U3y0KogKISC3dQqEdgLES-qsAQFgNzQTBsC1F1IKodRwCgBi5AALyEepZja1Ra0qyLrIEoSYBamjX1QOQ4FfKAGlmGjhsMMbJr2mjQGkiZhGQKAQG3KgxO4ySLo6a7bpoh6TAAJQQIKkAgpF3s47i-OW4TVOG4xcTFYQyE-DwbH_E0YDcDwhxGABJS4wgACnUHDgHHGBsYASgVSh-GXXRXz3KAADoRgAeTHNVsfpadZwg4gIVYmAfA6rrkB6jqaPvR8xR5ndcpqgrMMcsp3CWDxiaHLwYCRJplaAA
+	请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const gaugeData = [
+  {
+    value: 95,
+    name: '活猪',
+    title: {
+      offsetCenter: ['0%', '-70%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '-60%']
+    }
+  },
+  {
+    value: 100,
+    name: '活牛',
+    title: {
+      offsetCenter: ['0%', '-45%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '-35%']
+    }
+  },
+  {
+    value: 33,
+    name: '活鸡',
+    title: {
+      offsetCenter: ['0%', '-20%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '-10%']
+    }
+  },
+  {
+    value: 100,
+    name: '河鲜食品',
+    title: {
+      offsetCenter: ['0%', '5%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '15%']
+    }
+  },
+  {
+    value: 95,
+    name: '蔬菜',
+    title: {
+      offsetCenter: ['0%', '30%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '40%']
+    }
+  },
+  {
+    value: 70,
+    name: '面粉',
+    title: {
+      offsetCenter: ['0%', '55%']
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: ['0%', '65%']
+    }
+  }
+];
+option = {
+  series: [
+    {
+      type: 'gauge',
+      startAngle: 90,
+      endAngle: -270,
+      pointer: {
+        show: false
+      },
+      progress: {
+        show: true,
+        overlap: false,
+        roundCap: true,
+        clip: false,
+        itemStyle: {
+          borderWidth: 1,
+          borderColor: '#464646'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          width: 40
+        }
+      },
+      splitLine: {
+        show: true,
+        distance: 0,
+        length: 10
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        show: false,
+        distance: 50
+      },
+      data: gaugeData,
+      title: {
+        fontSize: 14
+      },
+      detail: {
+        width: 50,
+        height: 14,
+        fontSize: 14,
+        color: 'auto',
+        borderColor: 'auto',
+        borderRadius: 20,
+        borderWidth: 1,
+        formatter: '{value}%'
+      }
+    }
+  ]
+};
+setInterval(function () {
+  
+  myChart.setOption({
+    series: [
+      {
+        data: gaugeData,
+        pointer: {
+          show: false
+        }
+      }
+    ]
+  });
+}, 2000);
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
